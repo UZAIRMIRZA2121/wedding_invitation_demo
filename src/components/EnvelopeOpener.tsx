@@ -59,14 +59,14 @@ export default function EnvelopeOpener({ onOpen }: EnvelopeOpenerProps) {
             }}
             className="absolute inset-x-5 top-5 bottom-5 z-10 bg-[#faf5eb] rounded-lg border border-[#cba354] p-4 flex flex-col items-center justify-center text-center shadow-md"
           >
-            <p className="text-[9px] font-sans tracking-widest text-[#8c7146] uppercase">
+            <p className="text-[15px] font-sans tracking-widest text-[#8c7146] uppercase">
               Wedding Invitation
             </p>
-            <h3 className="font-script text-3xl text-[#1f3d2a] my-1 whitespace-nowrap">
+            <h3 className="font-script text-[30px]  text-3xl text-[#1f3d2a] my-1 whitespace-nowrap">
               Rida <span className="text-[#b88a38]">&amp;</span> Usman
             </h3>
-            <p className="text-[10px] font-serif text-[#655543]">
-              15 · NOVEMBER · 2026
+            <p className="text-[20px] font-serif text-[#655543]">
+             December · 2026
             </p>
           </motion.div>
 
@@ -135,13 +135,11 @@ export default function EnvelopeOpener({ onOpen }: EnvelopeOpenerProps) {
             >
               <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#cba354] via-[#e8cb85] to-[#9a6e2a] p-[2px] wax-seal-shadow flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300">
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-[#841b1b] to-[#4e0d0d] flex items-center justify-center border border-[#e8cb85]/60">
-                  <span className="font-script text-xl leading-none text-[#fbedc7] font-bold whitespace-nowrap">
+                  <span className="font-script text-[20px] leading-none text-[#fbedc7] font-bold whitespace-nowrap">
                     R &amp; U
                   </span>
                 </div>
-                <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#cba354] flex items-center justify-center text-[10px] text-[#2b2111] shadow">
-                  ❦
-                </span>
+             
               </div>
             </motion.button>
           </div>

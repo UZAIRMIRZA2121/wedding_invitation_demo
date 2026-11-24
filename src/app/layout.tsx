@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Great_Vibes, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Montserrat, Alex_Brush } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -16,6 +16,13 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
+const alexBrush = Alex_Brush({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-alex",
+  display: "swap",
+});
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
@@ -25,7 +32,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Rida  & Usman  — Royal Wedding Invitation",
-  description: "Celebrate the union of Rida  & Usman . Sunday, 15 November 2026 at Victoria Marquee, Faisalabad.",
+  description: "Celebrate the union of Rida  & Usman,  December  2026 at Victoria Marquee, Faisalabad.",
   keywords: ["Wedding", "Invitation", "Rida  and Usman ", "Royal Wedding", "Faisalabad"],
   openGraph: {
     title: "Rida  & Usman  — Royal Wedding Invitation",
@@ -40,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${alexBrush.variable}`}>
       <body className="antialiased font-serif bg-[#18231c] text-[#3e342b] overflow-x-hidden selection:bg-[#c5a059]/30">
         {children}
       </body>

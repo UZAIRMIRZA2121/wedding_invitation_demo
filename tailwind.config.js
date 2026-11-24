@@ -38,6 +38,7 @@ module.exports = {
       fontFamily: {
         serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
         script: ['var(--font-vibes)', 'cursive'],
+        alex: ['var(--font-alex)', 'cursive'],
         sans: ['var(--font-montserrat)', 'sans-serif'],
       },
       animation: {

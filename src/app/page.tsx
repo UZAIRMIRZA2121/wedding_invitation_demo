@@ -18,9 +18,9 @@ import { EVENTS, EVENT_KEYS, parseInvite, Invite } from "@/lib/events";
 
 const LABELS: Record<string, string> = {
   union: "THE HOLY UNION",
-  mehndi: "MEHNDI NIGHT",
-  barat: "WEDDING DAY",
-  walima: "THE WALIMA",
+  mehndi: "MEHNDI",
+  barat: "Barat",
+  walima: "WALIMA",
   surprise: "SURPRISE NOTE",
   rsvp: "RSVP & GUESTBOOK",
 };
@@ -137,7 +137,15 @@ export default function WeddingInvitation() {
       },
     }),
   };
-  const DEFAULT_GUESTS = ["User", "Umaie", "Ali"];
+  const DEFAULT_GUESTS = [
+    "Mrs. M. Younas",
+    "Mr & Mrs. M Yaqoob Shahid",
+    "Mr. & Mrs. Ashraf (Late)",
+    "Mr. & Mrs. Abdul Waheed",
+    "Mr. & Mrs. M. Umair",
+    "Mr. & Mrs. M. Uzair",
+    "M. Musa",
+  ];
   const linkNames = (invite.name ?? "")
     .split(",")
     .map((n) => n.trim())
@@ -199,7 +207,7 @@ export default function WeddingInvitation() {
                         Dear {invite.name},
                       </p>
                     )}
-                    <p className="text-[10px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
+                    <p className="text-[15px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
                       In The Name of Allah, The Most Gracious, The Most Merciful
                     </p>
                     <p className="text-[11px] font-sans tracking-[0.2em] text-[#735d39] uppercase font-medium pt-1">
@@ -208,26 +216,23 @@ export default function WeddingInvitation() {
                   </div>
 
                   <div className="mt-5 space-y-2">
-                    <h1 className="font-script text-5xl sm:text-6xl text-[#183523] leading-tight drop-shadow-sm">
-                      Mr. <span className="text-[#b88a38] font-normal">&amp;</span> Mrs. M. Anwar
+                    <h1 className="font-script text-[25px] text-[#183523] leading-tight drop-shadow-sm">
+                      Mr. <span className="text-[#b88a38] font-normal">&amp;</span> Mrs.   <br /><span className="font-alex text-[40px]">Muhammad Anwar</span>
                     </h1>
-
                   </div>
-
-
+                  
                   <div className="space-y-1">
-                    <p className="text-[9px] font-sans tracking-[0.3em] text-[#8e7349] uppercase">
+                    <p className="text-[14px] font-sans tracking-[0.3em] text-[#8e7349] uppercase">
                       Request The Pleasure Of Your Company
                     </p>
-                    <h1 className="font-script text-5xl sm:text-6xl text-[#183523] leading-tight drop-shadow-sm">
-                      Rida <br />
-                      <span className="text-[#b88a38] font-normal">&amp;</span> <br /> Usman
+                    <h1 className="font-script text-[55px]  text-[#183523] leading-tight drop-shadow-sm">
+                      Rida  <span className="text-[#b88a38] font-normal  text-[35px]">with</span>  Usman
                     </h1>
                     <div className="flex items-center justify-center gap-3 text-[#b88a38] text-xs py-1">
                       <span>✦</span>
                       <span className="h-[1px] w-12 bg-[#cba354]/60" />
                       <span className="font-sans text-[11px] tracking-[0.25em] text-[#6d552f] uppercase font-semibold">
-                        Dec 2026
+                        December 2026
                       </span>
                       <span className="h-[1px] w-12 bg-[#cba354]/60" />
                       <span>✦</span>
@@ -261,13 +266,13 @@ export default function WeddingInvitation() {
                 exit="exit"
                 className="absolute inset-0 p-6 sm:p-8 flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#fffbf4] to-[#f5ebda] overflow-y-auto"
               >
-                <div className="text-2xl text-[#b88a38]">❦</div>
+                <div className="text-2xl text-[#b88a38]"></div>
 
                 <div className="space-y-4 max-w-[320px]">
-                  <p className="text-[10px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
+                  <p className="text-[15px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
                     The Holy Union
                   </p>
-                  <p className="font-serif italic text-base sm:text-lg text-[#23422d] leading-relaxed border-y border-[#d8c5a2]/60 py-3">
+                  <p className="font-serif italic text-base text-[20px] text-[#23422d] leading-relaxed border-y border-[#d8c5a2]/60 py-3">
                     &ldquo;And among His Signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.&rdquo;
                     <span className="block mt-1 text-[11px] font-sans uppercase tracking-widest text-[#8a6e3e]">
                       — Surah Ar-Rum 30:21
@@ -278,7 +283,7 @@ export default function WeddingInvitation() {
                     Rida <span className="text-[#b88a38]">&amp;</span> Usman
                   </h2>
 
-                  <p className="text-sm sm:text-base font-serif text-[#4d4032] leading-relaxed">
+                  <p className="text-[20px] font-serif text-[#4d4032] leading-relaxed">
                     With grateful hearts and the blessings of our cherished families, we invite you to stand witness as we exchange vows and celebrate the sacred beginning of our forever.
                   </p>
                 </div>
@@ -363,22 +368,21 @@ export default function WeddingInvitation() {
                 className="absolute inset-0 p-5 sm:p-7 flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#fffbf4] to-[#f4e9d7] overflow-y-auto"
               >
                 <div>
-                  <p className="text-[10px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
-                    WITH LOVE &amp; GRATITUDE
-                  </p>
-                  <h2 className="font-script text-4xl sm:text-5xl text-[#1a3825] mt-5">
-                  RSVP
+                 
+                  <h2 className="font-script text-4xl sm:text-5xl text-[#1a3825] mt-4">
+                   Looking Forward:
                   </h2>
                 </div>
 
-                {/* Simple list of names */}
-                <div className="w-full max-w-[320px] my-auto">
+                {/* Elegant list of names styled like the card */}
+                <div className="w-full max-w-[320px] my-auto py-2">
+                  {/* Decorative Banner */}
                   {guestNames.length > 0 ? (
-                    <ul className="">
+                    <ul className="space-y-2.5">
                       {guestNames.map((n, i) => (
                         <li
                           key={`${n}-${i}`}
-                          className=""
+                          className="font-serif text-[25px]  font-semibold text-[#8b1828] tracking-wide"
                         >
                           {n}
                         </li>
@@ -392,7 +396,7 @@ export default function WeddingInvitation() {
                 </div>
 
                 <div className="w-full max-w-[320px] pt-3 border-t border-[#d8c5a2]/60 flex items-center justify-between">
-              
+
                   <button
                     type="button"
                     onClick={() => goToPage(0)}
