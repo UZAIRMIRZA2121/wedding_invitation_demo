@@ -49,64 +49,117 @@ export default function EventPage({ event, guests, name, direction, variants, ne
       initial="initial"
       animate="animate"
       exit="exit"
-      className="absolute inset-0 p-6 sm:p-8 flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#fffbf4] to-[#f4e9d7] overflow-y-auto"
+      className="absolute inset-0 px-4 py-3 sm:p-6 flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#fffbf4] to-[#f4e9d7] overflow-hidden scrollbar-none"
     >
-      <div>
-        <p className="text-[15px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">{event.eyebrow}</p>
-        <h2 className="font-script text-4xl sm:text-5xl text-[#1a3825] mt-1">{event.title}</h2>
+      {/* Background Image with subtle breathing pulse for Mehndi */}
+      {event.key === "mehndi" && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0.18, 0.35, 0.18] }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 pointer-events-none bg-cover bg-center z-0"
+            style={{ backgroundImage: "url('/mehndibackground.jpeg')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#fffbf4]/85 via-[#faf3e3]/75 to-[#f4e9d7]/85 pointer-events-none z-0" />
+        </>
+      )}
+
+      {/* Top Header */}
+      <div className="relative z-10 pt-1 shrink-0">
+        <p className="text-[13px] sm:text-[15px] font-sans tracking-[0.25em] text-[#8e7349] uppercase font-semibold">{event.eyebrow}</p>
+        <h2 className="font-script text-5xl sm:text-6xl text-[#1a3825] leading-tight mt-0.5">{event.title}</h2>
         {(name || guestLine) && (
-          <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#cba354]/50 bg-white/70 px-3 py-1 text-[26px] font-serif text-[#4d4032]">
-            <Users className="w-3 h-3 text-[#b88a38]" />
-            <span>{[name, guestLine].filter(Boolean).join(" · ")}</span>
+          <div className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-[#cba354]/60 bg-white/80 px-3.5 py-0.5 text-lg sm:text-xl font-serif text-[#4d4032] shadow-sm">
+            <Users className="w-4 h-4 text-[#b88a38]" />
+            <span className="font-medium">{[name, guestLine].filter(Boolean).join(" · ")}</span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col items-center w-full">
-        <span className="text-[14px] font-sans tracking-widest text-[#8a6e3e] uppercase mb-1">
-          COUNTDOWN TO THE CELEBRATION
-        </span>
-        <Countdown target={event.target} />
-      </div>
+      {/* Middle Scrollable/Sliding Content Container */}
+      <div className="w-full flex-1 min-h-0 overflow-y-auto my-1.5 px-1 flex flex-col items-center space-y-3 relative z-10 scrollbar-thin">
+        <div className="flex flex-col items-center w-full shrink-0">
+          <span className="text-[12px] sm:text-[13px] font-sans tracking-widest text-[#8a6e3e] uppercase font-semibold mb-0.5">
+            COUNTDOWN TO THE CELEBRATION
+          </span>
+          <Countdown target={event.target} />
+        </div>
 
-      <div className="w-full max-w-[320px] space-y-3 text-left">
-        {[
-          { Icon: Calendar, label: "DATE", main: event.dayText },
-          { Icon: Clock, label: "TIME", main: event.timeText },
-        ].map(({ Icon, label, main }) => (
-          <div key={label} className="flex items-start gap-3 p-3 rounded-lg bg-white/70 border border-[#d8c5a2]/70 shadow-sm">
-            <div className="p-2 rounded bg-[#1a3825] text-[#ecd089]"><Icon className="w-4 h-4" /></div>
+        <div className="w-full max-w-[340px] space-y-2.5 text-left shrink-0">
+          {[
+            { Icon: Calendar, label: "DATE", main: event.dayText },
+            { Icon: Clock, label: "TIME", main: event.timeText },
+          ].map(({ Icon, label, main }) => (
+            <div key={label} className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#d8c5a2]/80 shadow-sm">
+              <div className="p-2.5 rounded-lg bg-[#1a3825] text-[#ecd089]"><Icon className="w-5 h-5" /></div>
+              <div>
+                <span className="block text-[12px] font-sans tracking-widest text-[#8a6e3e] uppercase font-bold">{label}</span>
+                <strong className="font-sans text-[16px] sm:text-[17px] font-bold text-[#1b3424] leading-snug">{main}</strong>
+              </div>
+            </div>
+          ))}
+
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#d8c5a2]/80 shadow-sm">
+            <div className="p-2.5 rounded-lg bg-[#1a3825] text-[#ecd089]"><MapPin className="w-5 h-5" /></div>
             <div>
-              <span className="block text-[9px] font-sans tracking-widest text-[#8a6e3e] uppercase font-semibold">{label}</span>
-              <strong className="font-serif text-base text-[#1b3424]">{main}</strong>
+              <span className="block text-[12px] font-sans tracking-widest text-[#8a6e3e] uppercase font-bold">VENUE</span>
+              <strong className="font-sans text-[16px] sm:text-[17px] font-bold text-[#1b3424] block leading-snug">{event.venue}</strong>
+              <span className="text-[13px] sm:text-[14px] font-sans text-[#5c4a35] font-medium leading-relaxed block mt-0.5">{event.address}</span>
             </div>
           </div>
-        ))}
 
-        <div className="flex items-start gap-3 p-3 rounded-lg bg-white/70 border border-[#d8c5a2]/70 shadow-sm">
-          <div className="p-2 rounded bg-[#1a3825] text-[#ecd089]"><MapPin className="w-4 h-4" /></div>
-          <div>
-            <span className="block text-[9px] font-sans tracking-widest text-[#8a6e3e] uppercase font-semibold">VENUE</span>
-            <strong className="font-serif text-base text-[#1b3424] block leading-tight">{event.venue}</strong>
-            <span className="text-xs font-serif text-[#635443]">{event.address}</span>
-          </div>
+          {/* Mehndi special "Awaiting" badge and list of names */}
+          {event.key === "mehndi" && (
+            <div className="mt-2.5 p-4 rounded-xl bg-gradient-to-b from-[#fffaf1] to-[#fbf2e0] border-2 border-[#d4af37]/80 shadow-md text-center relative overflow-hidden">
+              <div className="flex items-center justify-center gap-2 mb-1.5">
+                <span className="h-[1px] w-6 bg-[#b88a38]/60" />
+                <h3 className="font-alex text-3xl sm:text-4xl text-[#7a121d] font-normal">
+                  Awaiting:
+                </h3>
+                <span className="h-[1px] w-6 bg-[#b88a38]/60" />
+              </div>
+
+              <p className="font-serif text-[18px] sm:text-[20px] font-bold text-[#7a121d] tracking-wide leading-snug">
+                HIRA, KHADIJA,<br />
+                ZAINAB SHAHZADI,<br />
+                FAJAR, IRSA,<br />
+                IZZA NOOR
+              </p>
+
+              <div className="flex items-center justify-center gap-1.5 my-2 text-[#b88a38]">
+                <span className="h-[1px] w-10 bg-[#cba354]/60" />
+                <span className="text-[12px] text-[#7a121d]">♥</span>
+                <span className="h-[1px] w-10 bg-[#cba354]/60" />
+              </div>
+
+              <p className="font-serif text-[15px] sm:text-[16px] text-[#6d4c1b] italic font-bold">
+                All Family Members &amp; Friends
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="w-full max-w-[300px] space-y-2 pt-2">
+      {/* Bottom Actions Pin to Bottom */}
+      <div className="w-full max-w-[320px] space-y-2 pt-2 pb-1 relative z-10 shrink-0">
         <button
           onClick={downloadIcs}
-          className="w-full py-2.5 px-4 rounded-md border border-[#cba354] bg-[#fffaf0] text-[#1b3424] font-sans text-xs tracking-wider uppercase font-semibold hover:bg-[#f1e5cc] transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+          className="w-full py-3 px-4 rounded-lg border border-[#cba354] bg-[#fffaf0] text-[#1b3424] font-sans text-[13px] tracking-wider uppercase font-bold hover:bg-[#f1e5cc] transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
         >
-          <CalendarPlus className="w-3.5 h-3.5 text-[#b88a38]" />
+          <CalendarPlus className="w-4 h-4 text-[#b88a38]" />
           <span>Add to My Calendar</span>
         </button>
         <button
           onClick={onNext}
-          className="w-full py-2.5 px-4 rounded-md bg-[#183523] text-[#fbf5e8] font-sans text-xs tracking-[0.2em] uppercase font-semibold hover:bg-[#0f2417] transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
+          className="w-full py-3 px-4 rounded-lg bg-[#183523] text-[#fbf5e8] font-sans text-[13px] tracking-[0.2em] uppercase font-bold hover:bg-[#0f2417] transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
         >
           <span>{nextLabel}</span>
-          <ChevronDown className="w-3.5 h-3.5 text-[#ecd089]" />
+          <ChevronDown className="w-4 h-4 text-[#ecd089]" />
         </button>
       </div>
     </motion.div>

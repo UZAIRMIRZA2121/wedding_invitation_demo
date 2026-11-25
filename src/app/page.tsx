@@ -78,12 +78,17 @@ export default function WeddingInvitation() {
   // Touch swipe gestures
   useEffect(() => {
     let startY = 0;
+    let startX = 0;
     const handleTouchStart = (e: TouchEvent) => {
       startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
     };
     const handleTouchEnd = (e: TouchEvent) => {
       const diffY = e.changedTouches[0].clientY - startY;
-      if (Math.abs(diffY) > 50) {
+      const diffX = e.changedTouches[0].clientX - startX;
+      
+      // If user is swiping vertically
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 40) {
         if (diffY < 0) {
           goToPage(Math.min(currentPage + 1, totalPages - 1));
         } else {
@@ -91,8 +96,8 @@ export default function WeddingInvitation() {
         }
       }
     };
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
@@ -215,8 +220,8 @@ export default function WeddingInvitation() {
                     </p>
                   </div>
 
-                  <div className="mt-5 space-y-2">
-                    <h1 className="font-script text-[25px] text-[#183523] leading-tight drop-shadow-sm">
+                  <div className="mt-3 space-y-1">
+                    <h1 className="font-script text-[35px] text-[#183523] leading-tight drop-shadow-sm">
                       Mr. <span className="text-[#b88a38] font-normal">&amp;</span> Mrs.   <br /><span className="font-alex text-[40px]">Muhammad Anwar</span>
                     </h1>
                   </div>
@@ -272,7 +277,7 @@ export default function WeddingInvitation() {
                   <p className="text-[15px] font-sans tracking-[0.25em] text-[#8e7349] uppercase">
                     The Holy Union
                   </p>
-                  <p className="font-serif italic text-base text-[20px] text-[#23422d] leading-relaxed border-y border-[#d8c5a2]/60 py-3">
+                  <p className="font-serif italic text-[25px] text-[#23422d] leading-relaxed border-y border-[#d8c5a2]/60 py-3">
                     &ldquo;And among His Signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.&rdquo;
                     <span className="block mt-1 text-[11px] font-sans uppercase tracking-widest text-[#8a6e3e]">
                       — Surah Ar-Rum 30:21
@@ -283,7 +288,7 @@ export default function WeddingInvitation() {
                     Rida <span className="text-[#b88a38]">&amp;</span> Usman
                   </h2>
 
-                  <p className="text-[20px] font-serif text-[#4d4032] leading-relaxed">
+                  <p className="text-[25px] font-serif text-[#4d4032] leading-relaxed">
                     With grateful hearts and the blessings of our cherished families, we invite you to stand witness as we exchange vows and celebrate the sacred beginning of our forever.
                   </p>
                 </div>
@@ -367,29 +372,27 @@ export default function WeddingInvitation() {
                 exit="exit"
                 className="absolute inset-0 p-5 sm:p-7 flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#fffbf4] to-[#f4e9d7] overflow-y-auto"
               >
-                <div>
-                 
-                  <h2 className="font-script text-4xl sm:text-5xl text-[#1a3825] mt-4">
+                <div className="pt-2">
+                  <h2 className="font-script text-[35px]  text-[#1a3825] leading-tight mt-2">
                    Looking Forward:
                   </h2>
                 </div>
 
                 {/* Elegant list of names styled like the card */}
-                <div className="w-full max-w-[320px] my-auto py-2">
-                  {/* Decorative Banner */}
+                <div className="w-full max-w-[360px] my-auto py-2">
                   {guestNames.length > 0 ? (
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-3">
                       {guestNames.map((n, i) => (
                         <li
                           key={`${n}-${i}`}
-                          className="font-serif text-[25px]  font-semibold text-[#8b1828] tracking-wide"
+                          className="font-serif text-[30px] font-bold text-[#8b1828] tracking-wide leading-tight"
                         >
                           {n}
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="font-serif italic text-sm text-[#8c7450]">
+                    <p className="font-serif italic text-lg text-[#8c7450]">
                       We look forward to celebrating with you.
                     </p>
                   )}
@@ -400,9 +403,9 @@ export default function WeddingInvitation() {
                   <button
                     type="button"
                     onClick={() => goToPage(0)}
-                    className="flex items-center gap-1 text-[11px] font-sans uppercase tracking-wider text-[#8a6e3e] font-semibold hover:text-[#183523] transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-sans uppercase tracking-wider text-[#8a6e3e] font-bold hover:text-[#183523] transition-colors"
                   >
-                    <RotateCcw className="w-3.5 h-3.5" />
+                    <RotateCcw className="w-4 h-4" />
                     <span>Replay</span>
                   </button>
                 </div>
